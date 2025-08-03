@@ -1,4 +1,3 @@
-
 # 🧱 Guia para Criação de Projeto do Zero — Baseado em Plataforma de video aula
 
 Este documento serve como um guia para criar uma aplicação de videoaulas semelhante à Udemy. A arquitetura, boas práticas e tecnologias aqui descritas devem ser seguidas fielmente.
@@ -7,23 +6,23 @@ Este documento serve como um guia para criar uma aplicação de videoaulas semel
 
 ## 🧰 Tecnologias Utilizadas
 
-| Stack              | Tecnologia                                  |
-|-------------------|---------------------------------------------|
-| **Framework**      | [Next.js 15 (App Router)](https://nextjs.org/) |
-| **Linguagem**      | [TypeScript](https://www.typescriptlang.org/) |
-| **Estilização**    | [MUI](https://mui.com/)                     |
-| **Formulários**    | [React Hook Form](https://react-hook-form.com/), [Zod](https://zod.dev/) |
-| **HTTP Client**    | [Axios](https://axios-http.com/)            |
-| **Requisições**    | [SWR](https://swr.vercel.app/)              |
-| **Player de Vídeo**| [React Player](https://github.com/cookpete/react-player) |
-| **Banco de Dados** | [Supabase](https://supabase.com/) ✅         |
-| **Auth**           | [NextAuth.js](https://next-auth.js.org/)   |
-| **Email**          | [Resend](https://resend.com/)              |
-| **Validação**      | Validação client-side com Zod e backend com schema |
-| **Erros**          | Tratativas com Prisma (ou Supabase), Zod, e client-side |
-| **Logs**           | [Sentry](https://sentry.io/)               |
-| **Armazenamento**  | [Amazon S3](https://aws.amazon.com/s3/)    |
-| **Vídeos**         | [Vimeo Private Embed](https://vimeo.com/)  |
+| Stack               | Tecnologia                                                               |
+| ------------------- | ------------------------------------------------------------------------ |
+| **Framework**       | [Next.js 15 (App Router)](https://nextjs.org/)                           |
+| **Linguagem**       | [TypeScript](https://www.typescriptlang.org/)                            |
+| **Estilização**     | [MUI](https://mui.com/)                                                  |
+| **Formulários**     | [React Hook Form](https://react-hook-form.com/), [Zod](https://zod.dev/) |
+| **HTTP Client**     | [Axios](https://axios-http.com/)                                         |
+| **Requisições**     | [SWR](https://swr.vercel.app/)                                           |
+| **Player de Vídeo** | [React Player](https://github.com/cookpete/react-player)                 |
+| **Banco de Dados**  | [Supabase](https://supabase.com/) ✅                                     |
+| **Auth**            | [NextAuth.js](https://next-auth.js.org/)                                 |
+| **Email**           | [Resend](https://resend.com/)                                            |
+| **Validação**       | Validação client-side com Zod e backend com schema                       |
+| **Erros**           | Tratativas com Prisma (ou Supabase), Zod, e client-side                  |
+| **Logs**            | [Sentry](https://sentry.io/)                                             |
+| **Armazenamento**   | [Amazon S3](https://aws.amazon.com/s3/)                                  |
+| **Vídeos**          | [Vimeo Private Embed](https://vimeo.com/)                                |
 
 ---
 
@@ -62,12 +61,14 @@ Este documento serve como um guia para criar uma aplicação de videoaulas semel
 ## 📄 Funcionalidades a Serem Implementadas
 
 ### 1. **Formulário de Matrícula**
+
 - Captura dados do aluno e endereço.
 - Cria o usuário no Supabase.
 - Gera o contrato PDF.
 - Envia link de pagamento via Asaas (mockar).
 
 ### 2. **Login e Recuperação de Senha**
+
 - Login via NextAuth
 - Recuperação de senha com:
   - envio de código via e-mail
@@ -75,11 +76,13 @@ Este documento serve como um guia para criar uma aplicação de videoaulas semel
   - formulário para nova senha
 
 ### 3. **Painel do Aluno**
+
 - Exibição de vídeo com React Player
 - Lista de módulos e aulas com Accordion
 - Liberação de conteúdo após pagamento e assinatura
 
 ### 4. **Painel Admin**
+
 - CRUD de Unidades e Aulas
 - CRUD de Usuários
 - Upload de arquivos para S3 (contratos, vídeos, imagens)
@@ -92,6 +95,7 @@ Este documento serve como um guia para criar uma aplicação de videoaulas semel
 
 - **Validação com Zod**: tanto client quanto server.
 - **Resposta Paginada Padrão**:
+
 ```ts
 {
   data: {
@@ -107,12 +111,17 @@ Este documento serve como um guia para criar uma aplicação de videoaulas semel
   }
 }
 ```
+
 - **Erro Padronizado**:
+
 ```ts
-return NextResponse.json({
-  message: "Erro ao validar dados",
-  issues: zodError.flatten().fieldErrors
-}, { status: 400 })
+return NextResponse.json(
+  {
+    message: "Erro ao validar dados",
+    issues: zodError.flatten().fieldErrors,
+  },
+  { status: 400 }
+);
 ```
 
 ---
